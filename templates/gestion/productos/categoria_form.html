@@ -1,0 +1,35 @@
+{% extends 'gestion/base.html' %}
+
+{% load static %}
+{% load bootstrap5 %}
+
+{% block title %}
+
+{{ block.super}}
+Index
+{% endblock title %}
+{% block stylesheet %}
+  {{ block.super }}
+{% endblock stylesheet %}
+
+{% block content %}
+{{ block.super }}
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary rounded-top p-4">
+                <div class="row">
+                    <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% bootstrap_form categoria %}
+                        <br>
+                        <div>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+{% endblock content %}

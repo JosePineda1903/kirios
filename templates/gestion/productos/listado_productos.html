@@ -1,0 +1,65 @@
+{% extends 'gestion/base.html' %}
+
+{% load static %}
+
+{% block title %}
+
+{{ block.super}}
+Index
+{% endblock title %}
+{% block stylesheet %}
+  {{ block.super }}
+{% endblock stylesheet %}
+
+{% block content %}
+{{ block.super }}
+        <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary rounded-top p-4">
+                <div class="row">
+                    <h1 id="color" style="color:blue">{{title}}</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                                <th>Descripcion</th>
+                                <th>Accción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos %}
+                            <tr>
+                                <td>{{ producto.pk }}</td>
+                                <td>{{ producto.nombre }}</td>
+                                <td>{{ producto.precio }}</td>
+                                <td>
+                                    {% if producto.estado == True %}
+                                        <img src="{% static 'img/icons/icon-yes.svg' %} " alt="True">
+                                    {% else %}
+                                        <img src="{% static 'img/icons/icon-no.svg' %} " alt="True">
+                                    {% endif %}
+                                </td>
+                                <td>{{ producto.descripcion }}</td>
+                                <td>
+                                    <a href="{% url 'producto_edit' producto.pk %}">
+                                        <span class="btn btn-primary btn-xs fa fa-edit" title="Editar"></span>
+                                    </a>
+                                    <a href="{% url 'producto_delete' producto.pk %}">
+                                        <span class="btn btn-primary btn-xs fa fa-trash" title="Eliminar"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+</div>
+
+{% endblock content %}
+
